@@ -10,8 +10,7 @@ class PacotesController extends Controller
 {
     public function index()
     {
-        $pacotes = Pacotes::all();
-        return response()->json(['data' => $pacotes]);
+        return response()->json(['data' => Pacotes::all()]);
     }
 
     public function store(Request $request)
@@ -22,26 +21,23 @@ class PacotesController extends Controller
             'valor' => 'required|integer',
         ]);
 
-        $pacote = new Pacotes([
+        Pacotes::create([
             'nome' => $request->input('nome'),
             'quantidadePlacas' => $request->input('quantidadePlacas'),
             'valor' => $request->input('valor'),
         ]);
 
-        $pacote->save();
         return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 
     public function show($id)
     {
-        $pacote = Pacotes::findOrFail($id);
-        return response()->json(['data' => $pacote]);
+        return response()->json(['data' => Pacotes::findOrFail($id)]);
     }
 
     public function edit($id)
     {
-        $pacote = Pacotes::findOrFail($id);
-        return response()->json(['data' => $pacote]);
+        return response()->json(['data' => Pacotes::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)
@@ -52,9 +48,7 @@ class PacotesController extends Controller
             'valor' => 'required|integer',
         ]);
 
-        $pacote = Pacotes::findOrFail($id);
-
-        $pacote->update([
+        Pacotes::findOrFail($id)->update([
             'nome' => $request->input('nome'),
             'quantidadePlacas' => $request->input('quantidadePlacas'),
             'valor' => $request->input('valor'),
@@ -65,8 +59,7 @@ class PacotesController extends Controller
 
     public function destroy($id)
     {
-        $pacote = Pacotes::findOrFail($id);
-        $pacote->delete();
+        Pacotes::findOrFail($id)->delete();
         return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 }
