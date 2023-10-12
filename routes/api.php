@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
-
+use App\Http\Controllers\PacotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +25,5 @@ Route::post('/budget', [CalculatorController::class, 'budget']);
 Route::post('/economy', [CalculatorController::class, 'economy']);
 Route::post('/investment', [CalculatorController::class, 'investment']);
 
+Route::resource('pacotes', PacotesController::class);
 
