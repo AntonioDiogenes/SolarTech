@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CalculatorController extends Controller
 {
     public function Budget(Request $request){
-        $valorPlaca = 1000;//mudar jaja
+        $valorPlaca = 1000;
         $RequestJson = $request->json()->all();
         $valorBudget = $RequestJson['valorPacote'] + ($RequestJson['placasAdicionais'] * $valorPlaca);//talvez adicionar taixa de instalaçao dps
 
@@ -18,14 +18,18 @@ class CalculatorController extends Controller
         $precoKhw = 0.75;
         $geracaoPlaca = 90;//reais por mes
 
+        //cada placa gera 120khw
         $RequestJson = $request->json()->all();
+        
+        //calcula quantidade de placas do pacote + quantidade de placas adicionais
+        $totalPlacas = $RequestJson['quantidadePlacas'] + $RequestJson['quantidadePlacasAdicionais'];
 
-        $geraçaoTotal = $RequestJson['quantidadePlacas'] * $geracaoPlaca;
+        $geraçaoTotal = $totalPlacas * $geracaoPlaca;
         $usoTotalCliente = $RequestJson['usoCliente'] * $precoKhw;
         $economiaTotal = $geraçaoTotal - $usoTotalCliente;
 
         //$economiaTotal = ( $RequestJson['quantidadePlacas'] * $geracaoPlaca ) - ( $RequestJson['usoCliente'] * $precoKhw )
-        return response()->json(["economiaTotal"=>$economiaTotal]);
+        return response()->json(["economiaTotal"=>$economiaTotal,"custoUsoCliente"=>$usoTotalCliente,"QuantoPlacaGera"=>$geraçaoTotal]);
     }
 
     public function Investment(Request $request){
