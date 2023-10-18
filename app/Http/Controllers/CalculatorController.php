@@ -9,27 +9,56 @@ class CalculatorController extends Controller
     public function Budget(Request $request){
         $valorPlaca = 1000;
         $RequestJson = $request->json()->all();
-        $valorBudget = $RequestJson['valorPacote'] + ($RequestJson['placasAdicionais'] * $valorPlaca);//talvez adicionar taixa de instalaçao dps
+        $valorPacote = $RequestJson['valorPacote'] ?? null;
+        $placasAdicionais = $RequestJson['placasAdicionais'] ?? null;
 
-        return response()->json($valorBudget);
+        if ($valorPacote !== null && $placasAdicionais !== null && is_numeric($valorPacote) && is_numeric($placasAdicionais)) {
+            $valorBudget = $valorPacote + ($placasAdicionais * $valorPlaca);
+            return response()->json($valorBudget);
+        } else {
+            $response = [
+                'error' => 'Parâmetros inválidos. Certifique-se de que valorPacote e placasAdicionais sejam números válidos e não nulos.'
+            ];
+            return response()->json($response, 400); // 400 é o código de status para requisição inválida
+        }
     }
-
+    
     public function Economy(Request $request){
-        $precoKhw = 0.75;
-        $geracaoPlaca = 90;//reais por mes
-
-        //cada placa gera 120khw
+        $precoKwh = 0.75;
+        $geracaoPlaca = 90; // reais por mês
         $RequestJson = $request->json()->all();
-        
-        //calcula quantidade de placas do pacote + quantidade de placas adicionais
-        $totalPlacas = $RequestJson['quantidadePlacas'] + $RequestJson['quantidadePlacasAdicionais'];
 
-        $geraçaoTotal = $totalPlacas * $geracaoPlaca;
-        $usoTotalCliente = $RequestJson['usoCliente'] * $precoKhw;
-        $economiaTotal = $geraçaoTotal - $usoTotalCliente;
+        // Verifica se as variáveis necessárias estão presentes no JSON da requisição
+        if (isset($RequestJson['quantidadePlacas'], $RequestJson['quantidadePlacasAdicionais'], $RequestJson['usoCliente'])) {
 
-        //$economiaTotal = ( $RequestJson['quantidadePlacas'] * $geracaoPlaca ) - ( $RequestJson['usoCliente'] * $precoKhw )
-        return response()->json(["economiaTotal"=>$economiaTotal,"custoUsoCliente"=>$usoTotalCliente,"QuantoPlacaGera"=>$geraçaoTotal]);
+            $quantidadePlacas = $RequestJson['quantidadePlacas'];
+            $quantidadePlacasAdicionais = $RequestJson['quantidadePlacasAdicionais'];
+
+            if (is_numeric($quantidadePlacas) && is_numeric($quantidadePlacasAdicionais) && is_numeric($RequestJson['usoCliente'])) {
+                // Calcula a quantidade total de placas
+                $totalPlacas = $quantidadePlacas + $quantidadePlacasAdicionais;
+
+                // Calcula a geração total
+                $geracaoTotal = $totalPlacas * $geracaoPlaca;
+
+                // Calcula o uso total do cliente e a economia total
+                $usoTotalCliente = $RequestJson['usoCliente'] * $precoKwh;
+                $economiaTotal = $geracaoTotal - $usoTotalCliente;
+
+                // Retorna os resultados em formato JSON
+                return response()->json(["economiaTotal" => $economiaTotal, "custoUsoCliente" => $usoTotalCliente, "QuantoPlacaGera" => $geracaoTotal]);
+            } else {
+                $response = [
+                    'error' => 'Parâmetros inválidos. Certifique-se de que quantidadePlacas, quantidadePlacasAdicionais e usoCliente sejam números válidos.'
+                ];
+                return response()->json($response, 400); 
+            }
+        } else {
+            $response = [
+                'error' => 'Parâmetros ausentes. Certifique-se de enviar quantidadePlacas, quantidadePlacasAdicionais e usoCliente na requisição.'
+            ];
+            return response()->json($response, 400);
+        }
     }
 
     public function Investment(Request $request){
