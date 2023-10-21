@@ -10,8 +10,15 @@ class PacotesController extends Controller
 {
     public function index()
     {
-        return response()->json(['data' => Pacotes::all()]);
+        $pacotes = Pacotes::all();
+
+        if ($pacotes->isEmpty()) {
+            return response()->json(['error' => 'Nenhum pacote encontrado'], 404); 
+        }
+
+        return response()->json(['data' => $pacotes]);
     }
+
 
     public function store(Request $request)
     {

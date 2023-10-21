@@ -812,8 +812,7 @@ section {
   border: 3px solid #1bb1dc;
 }
 
-/* economy Section
---------------------------------*/
+/* Economia Section */
 #economy {
   background: #fff;
   background-size: cover;
@@ -832,7 +831,7 @@ section {
   margin-bottom: 20px;
 }
 
-/* Estilos para o formulário dentro da seção de Economia */
+/* Estilos para todos os tipos de input dentro da seção de Economia */
 #economy form {
   display: flex;
   flex-direction: column;
@@ -844,8 +843,10 @@ section {
   margin-bottom: 10px;
 }
 
-#economy form select,
-#economy form input[type="number"] {
+#economy form input[type="text"],
+#economy form input[type="number"],
+#economy form input[type="email"],
+#economy form select {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -859,6 +860,7 @@ section {
   color: #2d2b46;
   background-color: #fff;
 }
+
 .subtitulo {
   font-style: italic;
   font-size: 14px;
