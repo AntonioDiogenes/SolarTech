@@ -2,64 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pacotes;
 use Illuminate\Http\Request;
+use App\Models\Pacotes;
+
 
 class PacotesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $pacotes = Pacotes::all();
+
+        if ($pacotes->isEmpty()) {
+            return response()->json(['error' => 'Nenhum pacote encontrado'], 404); 
+        }
+
+        return response()->json(['data' => $pacotes]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string',
+            'quantidadePlacas' => 'required|integer',
+            'valor' => 'required|integer',
+        ]);
+
+        Pacotes::create([
+            'nome' => $request->input('nome'),
+            'quantidadePlacas' => $request->input('quantidadePlacas'),
+            'valor' => $request->input('valor'),
+        ]);
+
+        return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pacotes $pacotes)
+    public function show($id)
     {
-        //
+        return response()->json(['data' => Pacotes::findOrFail($id)]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pacotes $pacotes)
+    public function edit($id)
     {
-        //
+        return response()->json(['data' => Pacotes::findOrFail($id)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pacotes $pacotes)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string',
+            'quantidadePlacas' => 'required|integer',
+            'valor' => 'required|integer',
+        ]);
+
+        Pacotes::findOrFail($id)->update([
+            'nome' => $request->input('nome'),
+            'quantidadePlacas' => $request->input('quantidadePlacas'),
+            'valor' => $request->input('valor'),
+        ]);
+
+        return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pacotes $pacotes)
+    public function destroy($id)
     {
-        //
+        Pacotes::findOrFail($id)->delete();
+        return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 }
