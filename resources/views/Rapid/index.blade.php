@@ -38,91 +38,93 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex align-items-center">
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+      <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">SunTech</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <h1 class="logo me-auto"><a href="index.html">SunTech</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <!--<li><a class="nav-link scrollto" href="#about">About</a></li>-->
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          @if(Auth::check() && Auth::user()->name !== null)  
-          <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+        <nav id="navbar" class="navbar order-last order-lg-0">
           <ul>
-            <li><a href="{{route('profile.edit')}}">Profile</a></li>
-            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a></li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-            </form>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <!--<li><a class="nav-link scrollto" href="#about">About</a></li>-->
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto" href="#team">Team</a></li>
+            @if(Auth::check() && Auth::user()->name !== null)  
+            <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{{route('profile.edit')}}">Profile</a></li>
+              <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a></li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </ul>
+            @else 
+              <li><a class="nav-link scrollto " href="{{ route('login') }}">Entrar</a></li>
+              <li><a class="nav-link scrollto " href="{{ route('register') }}">Registrar-se</a></li>
+            @endif
+            </li>
+            
           </ul>
-          @else 
-            <li><a class="nav-link scrollto " href="{{ route('login') }}">Entrar</a></li>
-            <li><a class="nav-link scrollto " href="{{ route('register') }}">Registrar-se</a></li>
-          @endif
-          </li>
-          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-      <!-- .navbar -->
-    </div>
-  </header><!-- End Header -->
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+  <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="clearfix">
-    <div class="container d-flex h-100">
-      <div class="row justify-content-center align-self-center" data-aos="fade-up">
-        <div class="col-lg-6 intro-info order-lg-first order-last" data-aos="zoom-in" data-aos-delay="100">
-          <h2>Transformando o Sol <br>em Energia para o Seu <span>Lar!</span></h2>
-          <div>
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    <section id="hero" class="clearfix">
+      <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center" data-aos="fade-up">
+          <div class="col-lg-6 intro-info order-lg-first order-last" data-aos="zoom-in" data-aos-delay="100">
+            <h2>Transformando o Sol <br>em Energia para o Seu <span>Lar!</span></h2>
+            <div>
+              <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 intro-img order-lg-last order-first" data-aos="zoom-out" data-aos-delay="200">
+            <img src="assets/img/intro-img.png" alt="" class="img-fluid">
           </div>
         </div>
 
-        <div class="col-lg-6 intro-img order-lg-last order-first" data-aos="zoom-out" data-aos-delay="200">
-          <img src="assets/img/intro-img.png" alt="" class="img-fluid">
-        </div>
       </div>
-
-    </div>
-  </section><!-- End Hero -->
+    </section>
+  <!-- End Hero -->
 
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+      <section id="about" class="about">
 
-      <div class="container" data-aos="fade-up">
-        <div class="row">
+        <div class="container" data-aos="fade-up">
+          <div class="row">
 
-          <div class="col-lg-5 col-md-6">
-            <div class="about-img" data-aos="fade-right" data-aos-delay="100">
-              <img src="assets/img/about-img.jpg" alt="">
+            <div class="col-lg-5 col-md-6">
+              <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                <img src="assets/img/about-img.jpg" alt="">
+              </div>
             </div>
-          </div>
 
-          <div class="col-lg-7 col-md-6">
-            <div class="about-content" data-aos="fade-left" data-aos-delay="100">
-              <h2>Quem Somos Nois?</h2>
-              <h3>Somos a SunTech, uma empresa apaixonada por tornar a energia solar acessível a todos. Acreditamos que a sustentabilidade e a independência energética não são luxos, mas direitos de todos os lares.</h3>
-              <p>Nossa jornada começou com a visão de um futuro mais limpo e econômico, onde cada casa pudesse gerar sua própria eletricidade a partir do sol. Desde então, dedicamos nossos esforços a criar soluções personalizadas de energia solar que se encaixam nas necessidades de nossos clientes.</p>
-              <p>Nossa equipe é composta por especialistas em energia solar altamente qualificados, comprometidos em fornecer os sistemas mais eficientes e confiáveis. Cada projeto que empreendemos é tratado com cuidado e atenção aos detalhes, garantindo que sua transição para a energia solar seja tranquila e econômica.</p>
-              <ul>
-                <li><i class="bi bi-check-circle"></i> Especialistas altamente qualificados em energia solar</li>
-                <li><i class="bi bi-check-circle"></i> Sistemas de energia solar adaptados às necessidades específicas de cada cliente.</li>
-                <li><i class="bi bi-check-circle"></i> Dedicados a promover um futuro mais limpo e sustentável por meio da energia solar</li>
-              </ul>
+            <div class="col-lg-7 col-md-6">
+              <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                <h2>Quem Somos Nois?</h2>
+                <h3>Somos a SunTech, uma empresa apaixonada por tornar a energia solar acessível a todos. Acreditamos que a sustentabilidade e a independência energética não são luxos, mas direitos de todos os lares.</h3>
+                <p>Nossa jornada começou com a visão de um futuro mais limpo e econômico, onde cada casa pudesse gerar sua própria eletricidade a partir do sol. Desde então, dedicamos nossos esforços a criar soluções personalizadas de energia solar que se encaixam nas necessidades de nossos clientes.</p>
+                <p>Nossa equipe é composta por especialistas em energia solar altamente qualificados, comprometidos em fornecer os sistemas mais eficientes e confiáveis. Cada projeto que empreendemos é tratado com cuidado e atenção aos detalhes, garantindo que sua transição para a energia solar seja tranquila e econômica.</p>
+                <ul>
+                  <li><i class="bi bi-check-circle"></i> Especialistas altamente qualificados em energia solar</li>
+                  <li><i class="bi bi-check-circle"></i> Sistemas de energia solar adaptados às necessidades específicas de cada cliente.</li>
+                  <li><i class="bi bi-check-circle"></i> Dedicados a promover um futuro mais limpo e sustentável por meio da energia solar</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-    </section>
+      </section>
     <!-- End About Section -->
 
     <!--
@@ -188,48 +190,50 @@
     </section> -->
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container-fluid" data-aos="fade-up">
+      <section id="why-us" class="why-us">
+        <div class="container-fluid" data-aos="fade-up">
 
-        <header class="section-header">
-          <h3>Porque nos escolher?</h3>
-          <p>Na SolarTech, oferecemos muito mais do que apenas sistemas de energia solar. Oferecemos a você a oportunidade de fazer parte de um futuro mais sustentável e econômico.</p>
-        </header>
+          <header class="section-header">
+            <h3>Porque nos escolher?</h3>
+            <p>Na SolarTech, oferecemos muito mais do que apenas sistemas de energia solar. Oferecemos a você a oportunidade de fazer parte de um futuro mais sustentável e econômico.</p>
+          </header>
 
-        <div class="row">
+          <div class="row">
 
-          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="why-us-img">
-              <img src="assets/img/why-us.jpg" alt="" class="img-fluid">
+            <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+              <div class="why-us-img">
+                <img src="assets/img/why-us.jpg" alt="" class="img-fluid">
+              </div>
             </div>
-          </div>
 
-          <div class="col-lg-6">
-            <div class="why-us-content">
-              <p>Molestiae omnis numquam corrupti omnis itaque. Voluptatum quidem impedit. Odio dolorum exercitationem est error omnis repudiandae ad dolorum sit.</p>
-              <p>
-                Explicabo repellendus quia labore. Non optio quo ea ut ratione et quaerat. Porro facilis deleniti porro consequatur
-                et temporibus. Labore est odio.
+            <div class="col-lg-6">
+              <div class="why-us-content">
+                <p>Molestiae omnis numquam corrupti omnis itaque. Voluptatum quidem impedit. Odio dolorum exercitationem est error omnis repudiandae ad dolorum sit.</p>
+                <p>
+                  Explicabo repellendus quia labore. Non optio quo ea ut ratione et quaerat. Porro facilis deleniti porro consequatur
+                  et temporibus. Labore est odio.
 
-                Odio omnis saepe qui. Veniam eaque ipsum. Ea quia voluptatum quis explicabo sed nihil repellat..
-              </p>
+                  Odio omnis saepe qui. Veniam eaque ipsum. Ea quia voluptatum quis explicabo sed nihil repellat..
+                </p>
 
-              <div class="features clearfix" data-aos="fade-up" data-aos-delay="100">
-                <i class="bi bi-bookmarks" style="color: #f058dc;"></i>
-                <h4>Experiência e Conhecimento</h4>
-                <p>Nossa equipe é composta por especialistas em energia solar altamente experientes, prontos para criar a solução perfeita para suas necessidades específicas.</p>
-              </div>
+                <div class="features clearfix" data-aos="fade-up" data-aos-delay="100">
+                  <i class="bi bi-bookmarks" style="color: #f058dc;"></i>
+                  <h4>Experiência e Conhecimento</h4>
+                  <p>Nossa equipe é composta por especialistas em energia solar altamente experientes, prontos para criar a solução perfeita para suas necessidades específicas.</p>
+                </div>
 
-              <div class="features clearfix" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-box-seam" style="color: #ffb774;"></i>
-                <h4>Parceria de Longo Prazo</h4>
-                <p>Quando você escolhe a SolarEnergia, está escolhendo uma parceria duradoura. Estamos comprometidos em acompanhá-lo em sua jornada de energia solar e a contribuir para seu sucesso contínuo.</p>
-              </div>
+                <div class="features clearfix" data-aos="fade-up" data-aos-delay="200">
+                  <i class="bi bi-box-seam" style="color: #ffb774;"></i>
+                  <h4>Parceria de Longo Prazo</h4>
+                  <p>Quando você escolhe a SolarEnergia, está escolhendo uma parceria duradoura. Estamos comprometidos em acompanhá-lo em sua jornada de energia solar e a contribuir para seu sucesso contínuo.</p>
+                </div>
 
-              <div class="features clearfix" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-card-checklist" style="color: #589af1;"></i>
-                <h4>Transparência e Educação</h4>
-                <p>Queremos que você compreenda completamente o funcionamento de seu sistema solar e os benefícios que ele oferece. Estamos aqui para responder a todas as suas perguntas e ajudá-lo a tomar decisões informadas.</p>
+                <div class="features clearfix" data-aos="fade-up" data-aos-delay="300">
+                  <i class="bi bi-card-checklist" style="color: #589af1;"></i>
+                  <h4>Transparência e Educação</h4>
+                  <p>Queremos que você compreenda completamente o funcionamento de seu sistema solar e os benefícios que ele oferece. Estamos aqui para responder a todas as suas perguntas e ajudá-lo a tomar decisões informadas.</p>
+                </div>
+
               </div>
 
             </div>
@@ -238,93 +242,94 @@
 
         </div>
 
-      </div>
+        <div class="container">
+          <div class="row counters" data-aos="fade-up" data-aos-delay="100">
 
-      <div class="container">
-        <div class="row counters" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Clients</p>
+            </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Clients</p>
-          </div>
+            <div class="col-lg-3 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="421" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Projects</p>
+            </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="421" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
+            <div class="col-lg-3 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Hours Of Support</p>
+            </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
+            <div class="col-lg-3 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="48" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Hard Workers</p>
+            </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="48" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
           </div>
 
         </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
+      </section>
+    <!-- End Why Us Section -->
 
     <!-- ======= Call To Action Section ======= -->
-    <section id="call-to-action" class="call-to-action">
-      <div class="container" data-aos="zoom-out">
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-start">
-            <h3 class="cta-title">Call To Action</h3>
-            <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <section id="call-to-action" class="call-to-action">
+        <div class="container" data-aos="zoom-out">
+          <div class="row">
+            <div class="col-lg-9 text-center text-lg-start">
+              <h3 class="cta-title">Call To Action</h3>
+              <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="col-lg-3 cta-btn-container text-center">
+              <a class="cta-btn align-middle" href="#">Call To Action</a>
+            </div>
           </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
-          </div>
-        </div>
 
-      </div>
-    </section><!--  End Call To Action Section -->
+        </div>
+      </section>
+    <!--  End Call To Action Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
+      <section id="features" class="features">
+        <div class="container" data-aos="fade-up">
 
-        <div class="row feature-item">
-          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+          <div class="row feature-item">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+              <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0" data-aos="fade-left" data-aos-delay="150">
+              <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
+              <p>
+                Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
+              </p>
+              <p>
+                Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
+              </p>
+            </div>
           </div>
-          <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0" data-aos="fade-left" data-aos-delay="150">
-            <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
-            <p>
-              Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
-            </p>
-            <p>
-              Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
-            </p>
+
+          <div class="row feature-item mt-5 pt-5">
+            <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+              <img src="assets/img/features-2.svg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="150">
+              <h4>Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.</h4>
+              <p>
+                Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis beatae incidunt sunt.
+              </p>
+              <p>
+                Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
+              </p>
+              <p>
+                Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
+              </p>
+            </div>
+
           </div>
+
         </div>
-
-        <div class="row feature-item mt-5 pt-5">
-          <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/features-2.svg" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="150">
-            <h4>Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.</h4>
-            <p>
-              Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis beatae incidunt sunt.
-            </p>
-            <p>
-              Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
-            </p>
-            <p>
-              Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Features Section -->
+      </section>
+    <!-- End Features Section -->
 
     <!-- ======= Portfolio Section ======= -->
       <section id="portfolio" class="portfolio section-bg">
@@ -808,48 +813,71 @@
                         <h1>Plano Basico</h1>
                         <h2>Confirme Seus Dados e Finalize Sua Compra</h2>
                   
-                        <form id="basicModalForm">
+                        <form id="basicModalForm" method="post" action="{{ route('finalizarCompra') }}">
+                          @csrf
                             <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[0]->nome }}" disabled>
-
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[0]->nome }}" readonly>
+                            @if(auth()->check() && isset(Auth::user()->id))
+                            <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                            @endif
                             <br>
                           
                             <label for="quantidade"> Quantidade de placas: </label>
-                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[0]->quantidadePlacas }}" disabled>
+                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[0]->quantidadePlacas }}" readonly>
                             
                             <br>
 
                             <label for="valorFinal"> Valor Final: </label>
-                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[0]->valorFinal }}" disabled>
+                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[0]->valorFinal }}" readonly>
                             
                             <br>
                             
                             <label for="numero_casa"> numero da casa </label>
-                            <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null) 
+                                <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
+                              @else
+                                <input type="number" id="numero_casa" name="numero_casa" value="" required>
+                              @endif
+
                             <br>
                             
                             <label for="logradouro"> logradouro </label>
-                            <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
+                              @else
+                                <input type="text" id="logradouro" name="logradouro" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="bairro"> bairro </label>
-                            <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
+                              @else
+                                <input type="text" id="bairro" name="bairro" value = "" required>
+                              @endif
+
                             <br>
 
                             <label for="cidade"> cidade </label>
-                            <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
+                              @else
+                                <input type="text" id="cidade" name="cidade" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="estado"> estado </label>
-                            <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
+                              @else
+                                <input type="text" id="estado" name="estado" value="" required>
+                              @endif
+
                             <br>
 
-                            <button type="submit"  data-bs-dismiss="modal" aria-label="Close" >Comprar</button>
+                            <button type="submit">Finalizar Compra</button>
                         </form>
                       </section>
                     </div>
@@ -872,45 +900,68 @@
                         <h1>Plano Regular</h1>
                         <h2>Confirme Seus Dados e Finalize Sua Compra</h2>
                   
-                        <form id="">
+                        <form id="regularModalForm" method="post" action="{{ route('finalizarCompra') }}">
+                          @csrf
                           <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[1]->nome }}" disabled>
-
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[1]->nome }}" readonly>
+                            @if(auth()->check() && isset(Auth::user()->id))
+                            <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                            @endif
                             <br>
                           
                             <label for="quantidade"> Quantidade de placas: </label>
-                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[1]->quantidadePlacas }}" disabled>
+                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[1]->quantidadePlacas }}" readonly>
                             
                             <br>
 
                             <label for="valorFinal"> Valor Final: </label>
-                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[1]->valorFinal }}" disabled>
+                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[1]->valorFinal }}" readonly>
                             
                             <br>
                             
                             <label for="numero_casa"> numero da casa </label>
-                            <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null) 
+                                <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
+                              @else
+                                <input type="number" id="numero_casa" name="numero_casa" value="" required>
+                              @endif
+
                             <br>
                             
                             <label for="logradouro"> logradouro </label>
-                            <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
+                              @else
+                                <input type="text" id="logradouro" name="logradouro" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="bairro"> bairro </label>
-                            <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
+                              @else
+                                <input type="text" id="bairro" name="bairro" value = "" required>
+                              @endif
+
                             <br>
 
                             <label for="cidade"> cidade </label>
-                            <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
+                              @else
+                                <input type="text" id="cidade" name="cidade" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="estado"> estado </label>
-                            <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
+                              @else
+                                <input type="text" id="estado" name="estado" value="" required>
+                              @endif
+
                             <br>
 
                             
@@ -937,45 +988,68 @@
                         <h1>Plano Premiun</h1>
                         <h2>Confirme Seus Dados e Finalize Sua Compra</h2>
                   
-                        <form id="">
+                        <form id="premiunModalForm" method="post" action="{{ route('finalizarCompra') }}">
+                          @csrf
                           <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[2]->nome }}" disabled>
-
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[2]->nome }}" readonly>
+                            @if(auth()->check() && isset(Auth::user()->id))
+                            <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                            @endif
                             <br>
                           
                             <label for="quantidade"> Quantidade de placas: </label>
-                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[2]->quantidadePlacas }}" disabled>
+                            <input type="number" id="quantidade" name="quantidade" value="{{ $pacotes[2]->quantidadePlacas }}" readonly>
                             
                             <br>
 
                             <label for="valorFinal"> Valor Final: </label>
-                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[2]->valorFinal }}" disabled>
+                            <input type="number" id="valorFinal" name="valorFinal" value="{{ $pacotes[2]->valorFinal }}" readonly>
                             
                             <br>
                             
                             <label for="numero_casa"> numero da casa </label>
-                            <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null) 
+                                <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
+                              @else
+                                <input type="number" id="numero_casa" name="numero_casa" value="" required>
+                              @endif
+
                             <br>
                             
                             <label for="logradouro"> logradouro </label>
-                            <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
+                              @else
+                                <input type="text" id="logradouro" name="logradouro" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="bairro"> bairro </label>
-                            <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
+                              @else
+                                <input type="text" id="bairro" name="bairro" value = "" required>
+                              @endif
+
                             <br>
 
                             <label for="cidade"> cidade </label>
-                            <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
+                              @else
+                                <input type="text" id="cidade" name="cidade" value="" required>
+                              @endif
+
                             <br>
 
                             <label for="estado"> estado </label>
-                            <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
-                            
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
+                              @else
+                                <input type="text" id="estado" name="estado" value="" required>
+                              @endif
+
                             <br>
 
                             
@@ -1055,8 +1129,11 @@
                                 <br>
                                 <span class="subtitulo">(a base do pacote ira definir a qualidade dos demais itens)</span>
                               </label>
-                              <input type="text" id="pacoteEscohido" name="pacoteEscohido" disabled>
-
+                              <input type="text" id="pacoteEscohido" name="pacoteEscohido" readonly>
+                              
+                              @if(auth()->check() && isset(Auth::user()->id))
+                              <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                              @endif
                               <br>
 
                               <label for="quantidadeEscolhida">
@@ -1064,33 +1141,53 @@
                                 <br>
                                 <span class="subtitulo">(Informe o Numero de Placas Desejadas Para o Pacote)</span>
                               </label>
-                              <input type="number" id="quantidadeEscolhida" name="quantidadeEscolhida" disabled>
+                              <input type="number" id="quantidadeEscolhida" name="quantidadeEscolhida" readonly>
 
                               <br>
 
                               <label for="numero_casa"> numero da casa </label>
-                              <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
-                              
-                              <br>
-                              
-                              <label for="logradouro"> logradouro </label>
-                              <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
-                              
-                              <br>
+                              @if(Auth::check() && Auth::user()->name !== null) 
+                                <input type="number" id="numero_casa" name="numero_casa" value="{{ Auth::user()->numero_casa }}" required>
+                              @else
+                                <input type="number" id="numero_casa" name="numero_casa" value="" required>
+                              @endif
 
-                              <label for="bairro"> bairro </label>
-                              <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
-                              
-                              <br>
+                            <br>
+                            
+                            <label for="logradouro"> logradouro </label>
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="logradouro" name="logradouro" value="{{ Auth::user()->logradouro }}" required>
+                              @else
+                                <input type="text" id="logradouro" name="logradouro" value="" required>
+                              @endif
 
-                              <label for="cidade"> cidade </label>
-                              <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
-                              
-                              <br>
+                            <br>
 
-                              <label for="estado"> estado </label>
-                              <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
-                              
+                            <label for="bairro"> bairro </label>
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="bairro" name="bairro" value = "{{ Auth::user()->bairro }}" required>
+                              @else
+                                <input type="text" id="bairro" name="bairro" value = "" required>
+                              @endif
+
+                            <br>
+
+                            <label for="cidade"> cidade </label>
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="cidade" name="cidade" value="{{ Auth::user()->cidade }}" required>
+                              @else
+                                <input type="text" id="cidade" name="cidade" value="" required>
+                              @endif
+
+                            <br>
+
+                            <label for="estado"> estado </label>
+                              @if(Auth::check() && Auth::user()->name !== null)
+                                <input type="text" id="estado" name="estado" value="{{ Auth::user()->estado }}" required>
+                              @else
+                                <input type="text" id="estado" name="estado" value="" required>
+                              @endif
+
                               <br>
 
                               <button type="submit">Enviar</button>
@@ -1132,7 +1229,7 @@
             <input type="number" id="quantidadeAdicionalPlaca" name="quantidadeAdicionalPlaca" required>
             <br>
             <label for="resultado">Resultado:</label>
-            <input type="number" id="resultado" name="resultado" disabled>
+            <input type="number" id="resultado" name="resultado" readonly>
             <button type="submit">Enviar</button>
         </form>
       </section> 
@@ -1248,123 +1345,124 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="section-bg">
-    <div class="footer-top">
-      <div class="container">
+    <footer id="footer" class="section-bg">
+      <div class="footer-top">
+        <div class="container">
 
-        <div class="row">
+          <div class="row">
 
-          <div class="col-lg-6">
+            <div class="col-lg-6">
 
-            <div class="row">
+              <div class="row">
 
-              <div class="col-sm-6">
+                <div class="col-sm-6">
 
-                <div class="footer-info">
-                  <h3>Rapid</h3>
-                  <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                  <div class="footer-info">
+                    <h3>Rapid</h3>
+                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                  </div>
+
+                  <div class="footer-newsletter">
+                    <h4>Our Newsletter</h4>
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
+                    <form action="" method="post">
+                      <input type="email" name="email"><input type="submit" value="Subscribe">
+                    </form>
+                  </div>
+
                 </div>
 
-                <div class="footer-newsletter">
-                  <h4>Our Newsletter</h4>
-                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
-                  <form action="" method="post">
-                    <input type="email" name="email"><input type="submit" value="Subscribe">
-                  </form>
-                </div>
+                <div class="col-sm-6">
+                  <div class="footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                      <li><a href="#">Home</a></li>
+                      <li><a href="#about">About us</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Terms of service</a></li>
+                      <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                  </div>
 
-              </div>
+                  <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <p>
+                      A108 Adam Street <br>
+                      New York, NY 535022<br>
+                      United States <br>
+                      <strong>Phone:</strong> +1 5589 55488 55<br>
+                      <strong>Email:</strong> info@example.com<br>
+                    </p>
+                  </div>
 
-              <div class="col-sm-6">
-                <div class="footer-links">
-                  <h4>Useful Links</h4>
-                  <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy policy</a></li>
-                  </ul>
-                </div>
+                  <div class="social-links">
+                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                  </div>
 
-                <div class="footer-links">
-                  <h4>Contact Us</h4>
-                  <p>
-                    A108 Adam Street <br>
-                    New York, NY 535022<br>
-                    United States <br>
-                    <strong>Phone:</strong> +1 5589 55488 55<br>
-                    <strong>Email:</strong> info@example.com<br>
-                  </p>
-                </div>
-
-                <div class="social-links">
-                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                 </div>
 
               </div>
 
             </div>
 
-          </div>
+            <div class="col-lg-6">
 
-          <div class="col-lg-6">
+              <div class="form">
 
-            <div class="form">
+                <h4>Send us a message</h4>
+                <p>Eos ipsa est voluptates. Nostrum nam libero ipsa vero. Debitis quasi sit eaque numquam similique commodi harum aut temporibus.</p>
 
-              <h4>Send us a message</h4>
-              <p>Eos ipsa est voluptates. Nostrum nam libero ipsa vero. Debitis quasi sit eaque numquam similique commodi harum aut temporibus.</p>
+                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                  </div>
 
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
+                  <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                  </div>
 
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
+                  <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
+                </form>
 
-                <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
-              </form>
+              </div>
 
             </div>
 
           </div>
 
         </div>
+      </div>
 
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Rapid
+        -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-        All the links in the footer should remain intact.
-        You can delete the links only if you purchased the pro version.
-        Licensing information: https://bootstrapmade.com/license/
-        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Rapid
-      -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer><!-- End  Footer -->
+    </footer>
+  <!-- End  Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pacotes;
+use App\Models\User;
+use Illuminate\Support\Facades\Http;
+
 
 
 class PacotesController extends Controller
@@ -68,5 +71,33 @@ class PacotesController extends Controller
     {
         Pacotes::findOrFail($id)->delete();
         return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
+    }
+
+    public function finalizarCompra(Request $request){
+        
+        $data = $request->all();
+
+        $usuario = User::find($data["id_usuario"]);
+        $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
+
+        $dadosDoUsuario = $usuario->toArray();
+        $dadosDoPacote = $pacote->toArray();
+        
+        $usuario->update([
+            'numero_casa' => $data["numero_casa"],
+            'logradouro' => $data["logradouro"],
+            'bairro' => $data["bairro"],
+            'cidade' => $data["cidade"],
+            'estado' => $data["estado"],
+        ]);
+
+        $sendToFinancial = [];
+        $sendToFinancial["pacote"] = $dadosDoPacote;
+        $sendToFinancial["usuario"] = $dadosDoUsuario;//enviar pro outro modulo
+
+        
+        dd($sendToFinancial);
+        
+        return redirect("/");
     }
 }
