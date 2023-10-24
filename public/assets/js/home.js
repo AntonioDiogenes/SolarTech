@@ -44,7 +44,10 @@ $('#customPlanModalForm').submit(function(event) {
     sendCustomPlanModalForm();
 });
 
-function sendBudget(){
+
+
+
+function sendBudget(){//envia o form pro controlador da calculadora
 
     var jsonContent = { // cria o json com os valores do form
         valorPacote : $('#valorPacote').val(),
@@ -66,7 +69,7 @@ function sendBudget(){
 
 }
 
-function sendEconomy(){
+function sendEconomy(){//envia o form pro controlador da calculadora
     
     var jsonContent = { // cria o json com os valores do form
         quantidadePlacas : $('#quantidadePlacas').val(),
@@ -96,7 +99,7 @@ function sendEconomy(){
 
 }
 
-function sendCustomPlanModalForm(){
+function sendCustomPlanModalForm(){//pegas as informaçao do primeiro form e joga pro form de finalizar compra
 
     pacotesCustom = $('#pacotesCustom').val();
     quantidadeCustom = $('#quantidadeCustom').val();
@@ -107,5 +110,9 @@ function sendCustomPlanModalForm(){
     $('#quantidadeEscolhida').val(quantidadeCustom)
 
     $('#finalCustomPlanModal').modal('show');
+
+}
+
+function finalizarCompra(){
 
 }
