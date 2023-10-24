@@ -74,6 +74,9 @@ class PacotesController extends Controller
     }
 
     public function finalizarCompra(Request $request){
+        //adicionar outro modal pra confirmar dados de endereço 
+        //ae recebe esse modal atualiza os dados e dps abre o modal de confirmar compra
+        //pra poder entrar aqui e enviar a compra 
         
         $data = $request->all();
 

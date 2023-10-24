@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'ADMIN',
             'email' => 'admin@admin.com',
             'cep' => '00000000',
-            'password' => Hash::make('admin'),
+            'sub' => '11',
             'access_level' => 'master',
         ]);
     }
