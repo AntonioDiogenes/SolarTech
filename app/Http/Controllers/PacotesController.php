@@ -74,12 +74,9 @@ class PacotesController extends Controller
     }
 
     public function finalizarCompra(Request $request){
-        //adicionar outro modal pra confirmar dados de endereço 
-        //ae recebe esse modal atualiza os dados e dps abre o modal de confirmar compra
-        //pra poder entrar aqui e enviar a compra 
-        
-        $data = $request->all();
 
+        $data = $request->all();
+        
         User::find($data["id_usuario"])->update([
             'numero_casa' => $data["numero_casa"],
             'logradouro' => $data["logradouro"],
@@ -87,20 +84,31 @@ class PacotesController extends Controller
             'cidade' => $data["cidade"],
             'estado' => $data["estado"],
         ]);
+        if(isset($data['nome']) == 'personalizado'){
+            $pacote = [];
+            $pacote['nomePacote'] =  $data['nome'];
+            $pacote['quantidadePlaca'] =  $data['quantidadeEscolhida'];
+            $pacote['valorFinal'] = $data['pacoteEscohido'] + ($data['quantidadeEscolhida'] * 1000);
+            $dadosDoPacote = $pacote;
+        }else{
+
+            $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
+            $dadosDoPacote = $pacote->toArray();
+        }
 
         $usuario = User::find($data["id_usuario"]);
-        $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
 
         $dadosDoUsuario = $usuario->toArray();
-        $dadosDoPacote = $pacote->toArray();
+        
         
 
         $sendToFinancial = [];
         $sendToFinancial["pacote"] = $dadosDoPacote;
         $sendToFinancial["usuario"] = $dadosDoUsuario;//enviar pro outro modulo
 
+
+        $response = Http::post('https://caminho-da-outra-aplicacao.com/api/endpoint', $sendToFinancial);
         
-        dd($sendToFinancial);
         
         return redirect("/");
     }

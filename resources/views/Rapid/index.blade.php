@@ -61,8 +61,7 @@
               </form>
             </ul>
             @else 
-              <li><a class="nav-link scrollto " href="{{ route('login') }}">Entrar</a></li>
-              <li><a class="nav-link scrollto " href="{{ route('register') }}">Registrar-se</a></li>
+              <li><a class="nav-link scrollto " href="{{ route('login.google') }}">Google</a></li>
             @endif
             </li>
             
@@ -1129,7 +1128,8 @@
                           <h1>Plano Personalizado</h1>
                           <h2>Confirme Seus Dados e Finalize Sua Compra</h2>
                     
-                          <form id="customPlanModalForm">
+                          <form id="customPlanModalForm" method="post" action="{{ route('finalizarCompra') }}">
+                            @csrf
                               <label for="pacoteEscohido">
                                 Pacote Base Escolhido :
                                 <br>
@@ -1140,6 +1140,9 @@
                               @if(auth()->check() && isset(Auth::user()->id))
                               <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
                               @endif
+
+                              <input type="hidden" name="nome" value="personalizado">
+  
                               <br>
 
                               <label for="quantidadeEscolhida">

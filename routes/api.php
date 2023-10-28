@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CalculatorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/budget', [CalculatorController::class, 'budget']);
+Route::post('/economy', [CalculatorController::class, 'economy']);
+Route::post('/investment', [CalculatorController::class, 'investment']);
