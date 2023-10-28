@@ -28,6 +28,7 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 Route::get('/teste', [GoogleAuthController::class, 'saveUser']);
 
 Route::get('/', [IndexController::class , "index"]);
+Route::post('/saveCep', [IndexController::class, 'saveCep'])->name('saveCep');
 
 Route::middleware('auth')->group(function () {
     Route::post('/finalizarCompra', [PacotesController::class, 'finalizarCompra'])->name('finalizarCompra');

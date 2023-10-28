@@ -699,7 +699,11 @@
                       <li class="list-group-item">Monitoramento Básico do Sistema</li>
                       <li class="list-group-item">Instalação Profissional</li> -->
                     </ul>
+                    @if(auth()->check() && auth()->user()->cep == null)
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
+                    @else
                     <a href="#" data-bs-toggle="modal" data-bs-target="#basicPlanModal" class="btn">Escolher Plano</a>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -717,19 +721,12 @@
                     </h4>
                     <ul class="list-group">
                       <li class="list-group-item">6 Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <!-- <li class="list-group-item">6 Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <li class="list-group-item">Inversor Solar de Alta Eficiência</li>
-                      <li class="list-group-item">Estrutura de Montagem de Alta Qualidade</li>
-                      <li class="list-group-item">Caixa de Conexão DC</li>
-                      <li class="list-group-item">Medidor de Energia Bidirecional</li>
-                      <li class="list-group-item">Disjuntores e Fusíveis de Qualidade</li>
-                      <li class="list-group-item">Cabos e Condutores Premium</li>
-                      <li class="list-group-item">Monitoramento Avançado do Sistema</li>
-                      <li class="list-group-item">Protetores contra Surtos</li>
-                      <li class="list-group-item">Instalação Profissional</li>
-                      <li class="list-group-item">Serviço de Suporte Técnico por 6 meses</li> -->
                     </ul>
+                    @if(auth()->check() && auth()->user()->cep == null)
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
+                    @else
                     <a href="#" data-bs-toggle="modal" data-bs-target="#regularPlanModal" class="btn">Escolher Plano</a>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -747,20 +744,12 @@
                     </h4>
                     <ul class="list-group">
                       <li class="list-group-item">9 Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <!-- <li class="list-group-item">9 Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <li class="list-group-item">Inversor Solar de Alto Desempenho</li>
-                      <li class="list-group-item">Estrutura de Montagem de Alta Qualidade</li>
-                      <li class="list-group-item">Caixa de Conexão DC</li>
-                      <li class="list-group-item">Medidor de Energia Bidirecional</li>
-                      <li class="list-group-item">Disjuntores e Fusíveis de Qualidade</li>
-                      <li class="list-group-item">Cabos e Condutores Premium</li>
-                      <li class="list-group-item">Monitoramento Avançado do Sistema</li>
-                      <li class="list-group-item">Protetores contra Surtos</li>
-                      <li class="list-group-item">Instalação Profissional</li>
-                      <li class="list-group-item">Serviço de Suporte Técnico por 1 ano</li>
-                      <li class="list-group-item">Garantia Estendida</li> -->
                     </ul>
+                    @if(auth()->check() && auth()->user()->cep == null)
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
+                    @else
                     <a href="#" data-bs-toggle="modal" data-bs-target="#premiunPlanModal" class="btn">Escolher Plano</a>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -778,26 +767,43 @@
                     </h4>
                     <ul class="list-group">
                       <li class="list-group-item">X Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <!-- <li class="list-group-item">X Painéis Solares (Módulos Fotovoltaicos)</li>
-                      <li class="list-group-item">Inversor Solar de Alto Desempenho</li>
-                      <li class="list-group-item">Estrutura de Montagem de Alta Qualidade</li>
-                      <li class="list-group-item">Caixa de Conexão DC</li>
-                      <li class="list-group-item">Medidor de Energia Bidirecional</li>
-                      <li class="list-group-item">Disjuntores e Fusíveis de Qualidade</li>
-                      <li class="list-group-item">Cabos e Condutores Premium</li>
-                      <li class="list-group-item">Monitoramento Avançado do Sistema</li>
-                      <li class="list-group-item">Protetores contra Surtos</li>
-                      <li class="list-group-item">Instalação Profissional</li>
-                      <li class="list-group-item">Serviço de Suporte Técnico por 1 ano</li>
-                      <li class="list-group-item">Garantia Estendida</li> -->
                     </ul>
+                    @if(auth()->check() && auth()->user()->cep == null)
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
+                    @else
                     <a  href="#" data-bs-toggle="modal" data-bs-target="#customPlanModal" class="btn">Escolher Plano</a>
+                    @endif
                   </div>
                 </div>
               </div>
             <!-- end custom Plan  -->
 
         <!------------------- MODALS ------------------->
+            <!-- verificar de tem cep -->
+              @if(auth()->check() && auth()->user()->cep == null)
+                <div class="modal fade" id="cepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Conteúdo do modal vai aqui -->
+                        <section id="economy" >
+                          <h1>Nos Informe Seu Cep</h1>
+                          <form id="cepModalForm" method="post" action="{{ route('saveCep') }}">
+                            @csrf
+                              <label for="cepUsuario"> Cep: </label>
+                              <input type="text" id="cepUsuario" name="cepUsuario" required>
+                              <button type="submit">Confirmar Cep</button>
+                          </form>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endif
+            <!-- verificar de tem cep -->
 
             <!-- basic Modal -->
               <div class="modal fade" id="basicPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

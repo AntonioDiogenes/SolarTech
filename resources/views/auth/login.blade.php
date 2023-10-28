@@ -38,9 +38,11 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
+            </x-primary-button>
+            <x-primary-button onclick="window.location.href = '/auth/google';" class="ml-3">
+                {{ __('Google') }}
             </x-primary-button>
         </div>
     </form>

@@ -2,64 +2,78 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pacotes;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $pacotes = Pacotes::all();
-        
+        if (Auth::check()) {
+            $user = Auth::user();
+            return view("/Rapid/index",compact("pacotes","user"));
+        }
         return view("/Rapid/index",compact("pacotes"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function saveCep(Request $request)
     {
-        //
+        $cep = $request->input('cepUsuario');
+
+        if (!empty($cep)) {
+            $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+
+            if ($response->successful()) {
+                $data = $response->json();
+
+                $user = User::find(auth()->user()->id);
+
+                $user->cep = $cep;
+                $user->logradouro = $data['logradouro'];
+                $user->bairro = $data['bairro'];
+                $user->cidade = $data['localidade'];
+                $user->estado = $data['uf'];
+
+                // Salva as alterações no banco de dados
+                $user->save();
+            }
+        }
+
+        // Se a requisição falhar ou se o 'cep' estiver vazio, redirecione de volta para a página anterior ou faça algo apropriado
+        // ...
+
+        // Por exemplo, redirecione de volta com uma mensagem de erro
+        return redirect()->back()->with('error', 'Falha ao obter informações do CEP.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

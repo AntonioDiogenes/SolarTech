@@ -80,19 +80,20 @@ class PacotesController extends Controller
         
         $data = $request->all();
 
-        $usuario = User::find($data["id_usuario"]);
-        $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
-
-        $dadosDoUsuario = $usuario->toArray();
-        $dadosDoPacote = $pacote->toArray();
-        
-        $usuario->update([
+        User::find($data["id_usuario"])->update([
             'numero_casa' => $data["numero_casa"],
             'logradouro' => $data["logradouro"],
             'bairro' => $data["bairro"],
             'cidade' => $data["cidade"],
             'estado' => $data["estado"],
         ]);
+
+        $usuario = User::find($data["id_usuario"]);
+        $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
+
+        $dadosDoUsuario = $usuario->toArray();
+        $dadosDoPacote = $pacote->toArray();
+        
 
         $sendToFinancial = [];
         $sendToFinancial["pacote"] = $dadosDoPacote;
