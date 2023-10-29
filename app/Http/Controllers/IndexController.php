@@ -23,7 +23,7 @@ class IndexController extends Controller
     public function saveCep(Request $request)
     {
         $cep = $request->input('cepUsuario');
-
+        $cpf = $request->input('cpfUsuario');
         if (!empty($cep)) {
             $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
 
@@ -33,6 +33,7 @@ class IndexController extends Controller
                 $user = User::find(auth()->user()->id);
 
                 $user->cep = $cep;
+                $user->cpf = $cpf;
                 $user->logradouro = $data['logradouro'];
                 $user->bairro = $data['bairro'];
                 $user->cidade = $data['localidade'];

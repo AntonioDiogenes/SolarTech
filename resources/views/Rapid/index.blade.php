@@ -789,12 +789,15 @@
                       <div class="modal-body">
                         <!-- Conteúdo do modal vai aqui -->
                         <section id="economy" >
-                          <h1>Nos Informe Seu Cep</h1>
+                          <h1>Nos Informe Seu Cep e Cpf</h1>
                           <form id="cepModalForm" method="post" action="{{ route('saveCep') }}">
                             @csrf
                               <label for="cepUsuario"> Cep: </label>
                               <input type="text" id="cepUsuario" name="cepUsuario" required>
-                              <button type="submit">Confirmar Cep</button>
+                              <br>
+                              <label for="cepUsuario"> Cpf: </label>
+                              <input type="text" id="cpfUsuario" name="cpfUsuario" required>
+                              <button type="submit">Confirmar</button>
                           </form>
                         </section>
                       </div>
@@ -821,7 +824,7 @@
                         <form id="basicModalForm" method="post" action="{{ route('finalizarCompra') }}">
                           @csrf
                             <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[0]->nome }}" readonly>
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[0]->nomePacote }}" readonly>
                             @if(auth()->check() && isset(Auth::user()->id))
                             <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
                             @endif
@@ -908,7 +911,7 @@
                         <form id="regularModalForm" method="post" action="{{ route('finalizarCompra') }}">
                           @csrf
                           <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[1]->nome }}" readonly>
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[1]->nomePacote }}" readonly>
                             @if(auth()->check() && isset(Auth::user()->id))
                             <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
                             @endif
@@ -996,7 +999,7 @@
                         <form id="premiunModalForm" method="post" action="{{ route('finalizarCompra') }}">
                           @csrf
                           <label for="planoEscolhido"> Plano Escolhido: </label>
-                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[2]->nome }}" readonly>
+                            <input type="text" id="planoEscolhido" name="planoEscolhido" value="{{ $pacotes[2]->nomePacote }}" readonly>
                             @if(auth()->check() && isset(Auth::user()->id))
                             <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
                             @endif
@@ -1090,7 +1093,7 @@
                             </label>
                             <select id="pacotesCustom" name="pacotesCustom">
                               @foreach($pacotes as $pacote)
-                                <option value="{{ $pacote->valor }}">{{ $pacote->nome }}</option>
+                                <option value="{{ $pacote->valor }}">{{ $pacote->nomePacote }}</option>
                               @endforeach
                             </select>
 
@@ -1142,7 +1145,7 @@
                               @endif
 
                               <input type="hidden" name="nome" value="personalizado">
-  
+
                               <br>
 
                               <label for="quantidadeEscolhida">
@@ -1226,7 +1229,7 @@
             <label for="valorPacote">Escolha Seu Pacote:</label>
             <select id="valorPacote" name="valorPacote">
               @foreach($pacotes as $pacote)
-                <option value="{{ $pacote->valorFinal }}">{{ $pacote->nome }}</option>
+                <option value="{{ $pacote->valorFinal }}">{{ $pacote->nomePacote }}</option>
               @endforeach
             </select>
             <br>
@@ -1253,7 +1256,7 @@
             <label for="quantidadePlacas">Escolha o pacote:</label>
             <select id="quantidadePlacas" name="quantidadePlacas"> 
               @foreach($pacotes as $pacote)
-                <option value="{{ $pacote->valor }}">{{ $pacote->nome }}</option>
+                <option value="{{ $pacote->valor }}">{{ $pacote->nomePacote }}</option>
               @endforeach
             </select>
 

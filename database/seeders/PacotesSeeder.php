@@ -10,19 +10,19 @@ class PacotesSeeder extends Seeder
     public function run()
     {
         Pacotes::create([
-            'nome' => 'basico',
+            'nomePacote' => 'basico',
             'quantidadePlacas' => 3,
             'valor' => 300,
         ]);
 
         Pacotes::create([
-            'nome' => 'medio',
+            'nomePacote' => 'medio',
             'quantidadePlacas' => 6,
             'valor' => 600,
         ]);
 
         Pacotes::create([
-            'nome' => 'premiun',
+            'nomePacote' => 'premiun',
             'quantidadePlacas' => 9,
             'valor' => 900,
         ]);

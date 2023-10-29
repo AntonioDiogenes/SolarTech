@@ -92,7 +92,7 @@ class PacotesController extends Controller
             $dadosDoPacote = $pacote;
         }else{
 
-            $pacote = Pacotes::where('nome',$data["planoEscolhido"])->first();
+            $pacote = Pacotes::where('nomePacote',$data["planoEscolhido"])->first();
             $dadosDoPacote = $pacote->toArray();
         }
 
@@ -106,7 +106,7 @@ class PacotesController extends Controller
         $sendToFinancial["pacote"] = $dadosDoPacote;
         $sendToFinancial["usuario"] = $dadosDoUsuario;//enviar pro outro modulo
 
-
+        dd($sendToFinancial);
         $response = Http::post('https://caminho-da-outra-aplicacao.com/api/endpoint', $sendToFinancial);
         
         

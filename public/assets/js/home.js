@@ -53,14 +53,15 @@ function sendBudget(){//envia o form pro controlador da calculadora
         valorPacote : $('#valorPacote').val(),
         placasAdicionais : $('#quantidadeAdicionalPlaca').val()
     } 
-    
+    console.log(jsonContent);
     $.ajax({
-        url: 'http://localhost:8000/api/budget',
+        url: 'http://127.0.0.1:5000/budget',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(jsonContent),
         success: function(response) {
-            $('#resultado').val(response).prop('disabled', true);
+            console.log(response);
+            //$('#resultado').val(response).prop('disabled', true);
         },
         error: function(error) {
             console.error('Erro na requisição:', error);
@@ -78,7 +79,7 @@ function sendEconomy(){//envia o form pro controlador da calculadora
     }
     
     $.ajax({
-        url: 'http://localhost:8000/api/economy', 
+        url: 'http://127.0.0.1:5000/economy', 
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(jsonContent),
