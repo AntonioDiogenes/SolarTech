@@ -63,8 +63,10 @@
             @else 
               <li><a class="nav-link scrollto " href="{{ route('login.google') }}">Google</a></li>
             @endif
-            </li>
             
+            @if(auth()->check() && auth()->user()->cep == null)
+             <li><a data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">atualizar cpf</a></li>
+            @endif
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -699,9 +701,9 @@
                       <li class="list-group-item">Instalação Profissional</li> -->
                     </ul>
                     @if(auth()->check() && auth()->user()->cep == null)
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
+                    <a data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">Escolher Plano</a>
                     @else
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#basicPlanModal" class="btn">Escolher Plano</a>
+                    <a data-bs-toggle="modal" data-bs-target="#basicPlanModal" class="btn">Escolher Plano</a>
                     @endif
                   </div>
                 </div>

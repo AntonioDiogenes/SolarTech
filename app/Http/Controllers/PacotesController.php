@@ -100,16 +100,27 @@ class PacotesController extends Controller
 
         $dadosDoUsuario = $usuario->toArray();
         
+        $sendToFinancial = [
+            'pacote' => $dadosDoPacote,
+            'usuario' => $dadosDoUsuario
+        ];
         
+        $sendEmail = [
+            'name' => $dadosDoUsuario['name'],
+            'destinatario' => $dadosDoUsuario['email'],
+            'pacote' => $dadosDoPacote['nomePacote'],
+            'valor' => $dadosDoPacote['valorFinal'],
+        ];
+        
+        // dd($sendEmail);
+        // dd($sendToFinancial);
 
-        $sendToFinancial = [];
-        $sendToFinancial["pacote"] = $dadosDoPacote;
-        $sendToFinancial["usuario"] = $dadosDoUsuario;//enviar pro outro modulo
-
-        dd($sendToFinancial);
         $response = Http::post('https://caminho-da-outra-aplicacao.com/api/endpoint', $sendToFinancial);
-        
-        
+
+        if ($response->successful()) {
+            
+        }
+
         return redirect("/");
     }
 }
