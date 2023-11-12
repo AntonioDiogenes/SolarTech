@@ -17,28 +17,37 @@ class GoogleAuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
     
-    public function handleGoogleCallback(){
+    public function handleGoogleCallback()
+    {
         $user = Socialite::driver('google')->user();
 
         $existingUser = User::where('sub', $user->getId())->first();
-        
+
         if ($existingUser) {
-            // Usuário já existe, faça o login do usuário
+            // Usuário já existe, verificar e, se necessário, atualizar os dados
+            if ($existingUser->name !== $user->getName() || $existingUser->email !== $user->getEmail()) {
+                // Atualizar os dados do usuário
+                $existingUser->name = $user->getName();
+                $existingUser->email = $user->getEmail();
+                $existingUser->save();
+            }
+
+            // Faça o login do usuário
             Auth::login($existingUser);
-            return redirect('/'); // Redirecione para a página de destino após o login
         } else {
             // Usuário não existe, registre-o no banco de dados
             $newUser = new User();
             $newUser->name = $user->getName();
             $newUser->email = $user->getEmail();
-            $newUser->sub = $user->getId(); 
+            $newUser->sub = $user->getId();
+            $newUser->access_level = 'cliente'; // Defina o access_level como "cliente" para novos usuários
 
             $newUser->save();
 
             Auth::login($newUser);
-
-            return redirect('/');
         }
+
+        return redirect('/');
     }
     
 

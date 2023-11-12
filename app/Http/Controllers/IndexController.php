@@ -15,7 +15,11 @@ class IndexController extends Controller
         $pacotes = Pacotes::all();
         if (Auth::check()) {
             $user = Auth::user();
-            return view("/Rapid/index",compact("pacotes","user"));
+            $response = Http::get('http://localhost:5500/api/compras-cliente/'.$user->id);
+
+            $vendas = $response->json([0]);
+            //dd($vendas);
+            return view("/Rapid/index",compact("pacotes","user","vendas"));
         }
         return view("/Rapid/index",compact("pacotes"));
     }

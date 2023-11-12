@@ -87,7 +87,7 @@ class PacotesController extends Controller
         if(isset($data['nome']) == 'personalizado'){
             $pacote = [];
             $pacote['nomePacote'] =  $data['nome'];
-            $pacote['quantidadePlaca'] =  $data['quantidadeEscolhida'];
+            $pacote['quantidadePlacas'] =  $data['quantidadeEscolhida'];
             $pacote['valorFinal'] = $data['pacoteEscohido'] + ($data['quantidadeEscolhida'] * 1000);
             $dadosDoPacote = $pacote;
         }else{
@@ -114,11 +114,12 @@ class PacotesController extends Controller
         
         // dd($sendEmail);
         // dd($sendToFinancial);
-
-        $response = Http::post('https://caminho-da-outra-aplicacao.com/api/endpoint', $sendToFinancial);
-
-        if ($response->successful()) {
-            
+        $response = Http::post('http://localhost:5500/api/receber-dados', $sendToFinancial);
+        
+        if ($response->json(['message']) == 'True') {
+            $resp = Http::post('http://localhost:5000/sendEmail', $sendEmail);
+        }else{
+            dd("ai meu cu");
         }
 
         return redirect("/");

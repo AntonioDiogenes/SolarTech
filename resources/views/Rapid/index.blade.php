@@ -26,6 +26,10 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+  <!-- dataTable -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+
   <!-- =======================================================
   * Template Name: Rapid
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
@@ -67,6 +71,7 @@
             @if(auth()->check() && auth()->user()->cep == null)
              <li><a data-bs-toggle="modal" data-bs-target="#cepModal" class="btn">atualizar cpf</a></li>
             @endif
+            <li><a data-bs-toggle="modal" data-bs-target="#comprasModal" class="btn">Minhas Compras</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -82,7 +87,7 @@
           <div class="col-lg-6 intro-info order-lg-first order-last" data-aos="zoom-in" data-aos-delay="100">
             <h2>Transformando o Sol <br>em Energia para o Seu <span>Lar!</span></h2>
             <div>
-              <a href="#about" class="btn-get-started scrollto">Get Started</a>
+              <a href="#about" class="btn-get-started scrollto" dusk="gs">Get Started</a>
             </div>
           </div>
 
@@ -128,8 +133,8 @@
       </section>
     <!-- End About Section -->
 
-    <!--
-    <section id="services" class="services section-bg">
+    
+    <!-- <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
@@ -273,7 +278,7 @@
     <!-- End Why Us Section -->
 
     <!-- ======= Call To Action Section ======= -->
-      <section id="call-to-action" class="call-to-action">
+      <!-- <section id="call-to-action" class="call-to-action">
         <div class="container" data-aos="zoom-out">
           <div class="row">
             <div class="col-lg-9 text-center text-lg-start">
@@ -286,11 +291,11 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!--  End Call To Action Section -->
 
     <!-- ======= Features Section ======= -->
-      <section id="features" class="features">
+      <!-- <section id="features" class="features">
         <div class="container" data-aos="fade-up">
 
           <div class="row feature-item">
@@ -329,11 +334,11 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!-- End Features Section -->
 
     <!-- ======= Portfolio Section ======= -->
-      <section id="portfolio" class="portfolio section-bg">
+      <!-- <section id="portfolio" class="portfolio section-bg">
         <div class="container" data-aos="fade-up">
 
           <header class="section-header">
@@ -482,11 +487,11 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!-- ======= End Portfolio Section ======= -->
 
     <!-- ======= Testimonials Section ======= -->
-      <section id="testimonials" class="testimonials">
+      <!-- <section id="testimonials" class="testimonials">
         <div class="container" data-aos="zoom-in">
 
           <header class="section-header">
@@ -508,7 +513,7 @@
                         Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                       </p>
                     </div>
-                  </div><!-- End testimonial item -->
+                  </div>
 
                   <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -519,7 +524,7 @@
                         Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                       </p>
                     </div>
-                  </div><!-- End testimonial item -->
+                  </div>
 
                   <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -530,7 +535,7 @@
                         Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                       </p>
                     </div>
-                  </div><!-- End testimonial item -->
+                  </div>
 
                   <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -541,7 +546,7 @@
                         Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
                       </p>
                     </div>
-                  </div><!-- End testimonial item -->
+                  </div>
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -550,11 +555,11 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!-- ======= End Testimonials Section ======= -->
 
     <!-- ======= Team Section ======= -->
-      <section id="team" class="team section-bg">
+      <!-- <section id="team" class="team section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-header">
             <h3>Team</h3>
@@ -638,11 +643,11 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!-- End Team Section -->
 
     <!-- ======= Clients Section ======= -->
-      <section id="clients" class="clients">
+      <!-- <section id="clients" class="clients">
         <div class="container" data-aos="zoom-in">
 
           <header class="section-header">
@@ -664,7 +669,7 @@
           </div>
 
         </div>
-      </section>
+      </section> -->
     <!-- ======= End Clients Section=======  -->
 
     <!-- ======= Pricing Section ======= -->
@@ -807,6 +812,46 @@
                   </div>
                 </div>
               @endif
+            <!-- verificar de tem cep -->
+
+          <!-- verificar de tem cep -->
+                <div class="modal fade" id="comprasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Conteúdo do modal vai aqui -->
+                        <section id="economy" >
+                          <h1>Minhas Compras</h1>
+                          <table id="tableMinhasCompras">
+                            <thead>
+                              <tr>
+                                <th>id</th>
+                                <th>Pacote Escolhido</th>
+                                <th>Quatidade de Placas</th>
+                                <th>Valor</th>
+                                <th>opçoes</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                @foreach($vendas as $item)
+                                <th>{{$item['id']}}</th>
+                                <th>{{$item['nomePacote']}}</th>
+                                <th>{{$item['quantidadePlacas']}}</th>
+                                <th>{{$item['valorFinal']}}</th>
+                                <th><button>cu de burra</button></th>
+                                @endforeach
+                              </tr>
+                            </tbody>
+                          </table>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             <!-- verificar de tem cep -->
 
             <!-- basic Modal -->
@@ -1222,14 +1267,14 @@
     <!-- ======= End Pricing Section ======= -->
 
     <!-- ======= Budget Section ======= -->
-      <section id="budget" >
+      <section id="budget" dusk="BudgetSection" >
         <h1>Orçamento</h1>
         <h2>Faça aqui seu orçamento</h2>
 
         <form id="budget-form" method="POST" >
           @csrf
-            <label for="valorPacote">Escolha Seu Pacote:</label>
-            <select id="valorPacote" name="valorPacote">
+            <label for="valorPacote" >Escolha Seu Pacote:</label>
+            <select id="valorPacote" name="valorPacote" >
               @foreach($pacotes as $pacote)
                 <option value="{{ $pacote->valorFinal }}">{{ $pacote->nomePacote }}</option>
               @endforeach
@@ -1243,14 +1288,14 @@
             <input type="number" id="quantidadeAdicionalPlaca" name="quantidadeAdicionalPlaca" required>
             <br>
             <label for="resultado">Resultado:</label>
-            <input type="number" id="resultado" name="resultado" readonly>
-            <button type="submit">Enviar</button>
+            <input type="number" id="resultado" dusk="resultado" name="resultado" readonly>
+            <button type="submit" dusk="enviarBudget">Enviar</button>
         </form>
       </section> 
     <!-- ======= End Budget Section ======= -->
 
     <!-- ======= economy Section ======= -->
-      <section id="economy" >
+      <section id="economy" dusk="EconomySection">
         <h1>Economia</h1>
         <h2>Calcule aqui a economia que voce tera ao comprar nosso produto</h2>
 
@@ -1281,7 +1326,7 @@
             <br>
             <span id="economyOutput"></span>
             <br>
-            <button type="submit">Enviar</button>
+            <button type="submit" dusk="enviarEconomy">Enviar</button>
         </form>
       </section> 
     <!-- ======= End economy Section ======= -->
@@ -1489,7 +1534,10 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script>
+    let table = new DataTable('#tableMinhasCompras');
+  </script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/home.js"></script>
