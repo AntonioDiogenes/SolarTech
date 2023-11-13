@@ -48,10 +48,6 @@ class IndexController extends Controller
             }
         }
 
-        // Se a requisição falhar ou se o 'cep' estiver vazio, redirecione de volta para a página anterior ou faça algo apropriado
-        // ...
-
-        // Por exemplo, redirecione de volta com uma mensagem de erro
         return redirect()->back()->with('error', 'Falha ao obter informações do CEP.');
     }
 

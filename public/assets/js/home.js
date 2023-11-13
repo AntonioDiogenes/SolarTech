@@ -1,5 +1,5 @@
 const URL = 'http://127.0.0.1:8000/api';
-
+const URL_MODULO = 'http://127.0.0.1:5500/api'
 
 $('#budget-form').submit(function(event) {
     event.preventDefault();
@@ -88,4 +88,28 @@ function sendCustomPlanModalForm(){//pegas as informaçao do primeiro form e jog
 
 function finalizarCompra(){
 
+}
+
+function buscarFatura(id_compra){
+
+    $.ajax({
+        url: URL_MODULO + '/cliente/faturas/' + id_compra, 
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(response) {
+            fatura = response['venda']['fatura'];
+
+            $('#comprasModal').modal('hide');
+            $('#faturaModal').modal('show');
+            
+            $('#id').text(fatura['id']);
+            $('#StatusPagamento').text(fatura['pago'] == 0 ? 'pagamento pendente' : 'pago');
+            $('#Valor').text('R$ ' + fatura['valor']);
+
+        },
+        error: function(error) {
+            console.error('Erro na requisição:', error);
+        }
+    });
+  
 }

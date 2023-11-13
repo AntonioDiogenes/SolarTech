@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Rapid Bootstrap Template - Index</title>
+  <title>SolarTech</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,7 +45,7 @@
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
       <div class="container d-flex align-items-center">
 
-        <h1 class="logo me-auto"><a href="index.html">SunTech</a></h1>
+        <h1 class="logo me-auto"><a href="index.html">SolarTech</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -53,12 +53,12 @@
           <ul>
             <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
             <!--<li><a class="nav-link scrollto" href="#about">About</a></li>-->
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
-            <li><a class="nav-link scrollto" href="#team">Team</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li> -->
+            <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
             @if(Auth::check() && Auth::user()->name !== null)  
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="{{route('profile.edit')}}">Profile</a></li>
+              <li><a onclick='$("#PerfilModal").modal("show")'>Atualizar Dados</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a></li>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -687,11 +687,11 @@
               <div class="col-xs-12 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                 <div class="card">
                   <div class="card-header">
-                    <h3><span class="currency">$</span>5.000<span class="period"></span></h3>
+                    <h3><span class="currency">R$</span>5.000<span class="period"></span></h3>
                   </div>
                   <div class="card-block">
                     <h4 class="card-title">
-                      Pacote Comum 
+                      Pacote Básico 
                     </h4>
                     <ul class="list-group">
                       <li class="list-group-item" id="cudeburra">3 Painéis Solares (Módulos Fotovoltaicos)</li>
@@ -719,11 +719,11 @@
               <div class="col-xs-12 col-lg-3" data-aos="fade-up" data-aos-delay="200">
                 <div class="card">
                   <div class="card-header">
-                    <h3><span class="currency">$</span>8.500<span class="period"></span></h3>
+                    <h3><span class="currency">R$</span>8.500<span class="period"></span></h3>
                   </div>
                   <div class="card-block">
                     <h4 class="card-title">
-                      Pacote Pro
+                      Pacote Médio
                     </h4>
                     <ul class="list-group">
                       <li class="list-group-item">6 Painéis Solares (Módulos Fotovoltaicos)</li>
@@ -742,7 +742,7 @@
               <div class="col-xs-12 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="card">
                   <div class="card-header">
-                    <h3><span class="currency">$</span>12.000<span class="period"></span></h3>
+                    <h3><span class="currency">R$</span>12.000<span class="period"></span></h3>
                   </div>
                   <div class="card-block">
                     <h4 class="card-title">
@@ -765,7 +765,7 @@
               <div class="col-xs-12 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="card">
                   <div class="card-header">
-                    <h3><span class="currency">$</span>12.000<span class="period"></span></h3>
+                    <h3><span class="currency">R$</span>x.xxx<span class="period"></span></h3>
                   </div>
                   <div class="card-block">
                     <h4 class="card-title">
@@ -814,45 +814,49 @@
               @endif
             <!-- verificar de tem cep -->
 
-          <!-- verificar de tem cep -->
-                <div class="modal fade" id="comprasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <!-- Conteúdo do modal vai aqui -->
-                        <section id="economy" >
-                          <h1>Minhas Compras</h1>
-                          <table id="tableMinhasCompras">
-                            <thead>
-                              <tr>
-                                <th>id</th>
-                                <th>Pacote Escolhido</th>
-                                <th>Quatidade de Placas</th>
-                                <th>Valor</th>
-                                <th>opçoes</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                @foreach($vendas as $item)
-                                <th>{{$item['id']}}</th>
-                                <th>{{$item['nomePacote']}}</th>
-                                <th>{{$item['quantidadePlacas']}}</th>
-                                <th>{{$item['valorFinal']}}</th>
-                                <th><button>cu de burra</button></th>
-                                @endforeach
-                              </tr>
-                            </tbody>
-                          </table>
-                        </section>
+            <!-- tabela de minhas compras -->
+                @if(auth()->check())
+                  <div class="modal fade" id="comprasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Conteúdo do modal vai aqui -->
+                          <section id="economy" >
+                            <h1>Minhas Compras</h1>
+                            <table id="tableMinhasCompras">
+                              <thead>
+                                <tr>
+                                  <th>id</th>
+                                  <th>Pacote Escolhido</th>
+                                  <th>Quatidade de Placas</th>
+                                  <th>Valor</th>
+                                  <th>opçoes</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  @if(isset($vendas))
+                                    @foreach($vendas as $item)
+                                    <th>{{$item['id']}}</th>
+                                    <th>{{$item['nomePacote']}}</th>
+                                    <th>{{$item['quantidadePlacas']}}</th>
+                                    <th>{{$item['valorFinal']}}</th>
+                                    <th><button class="btn btn-success" onclick="buscarFatura({{$item['id']}})">Gerar Fatura</button></th>
+                                    @endforeach
+                                  @endif
+                                </tr>
+                              </tbody>
+                            </table>
+                          </section>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-            <!-- verificar de tem cep -->
+                @endif
+            <!-- tabela de minhas compras -->
 
             <!-- basic Modal -->
               <div class="modal fade" id="basicPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1258,6 +1262,71 @@
                 </div>
             <!-- end finalizar compra custom plan modal -->
 
+            <!-- tabela de minhas compras -->
+            
+                <div class="modal fade" id="faturaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Conteúdo do modal vai aqui -->
+                        <section id="economy" >
+                          <h1>Fatura</h1>
+                          <table id="tableFatura" class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>id</th>
+                                <th>Status Pagamento</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                  <th id='id'></th>
+                                  <th id='StatusPagamento'></th>
+                                  <th id='Valor'></th>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button class="btn btn-primary">Pagar</button>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+            <!-- tabela de minhas compras -->
+
+            <!-- perfil do usuario -->
+            @if(Auth::check())
+              <div class="modal fade" id="PerfilModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Conteúdo do modal vai aqui -->
+                          <section id="economy" >
+                            <h1>Olá, {{ auth()->user()->name }} !</h1>
+                            <form id="cepModalForm" method="post" action="{{ route('saveCep') }}">
+                              @csrf
+                                <label for="cepUsuario"> Cep: </label>
+                                <input type="text" id="cepUsuario" name="cepUsuario" required>
+                                <br>
+                                <label for="cepUsuario"> Cpf: </label>
+                                <input type="text" id="cpfUsuario" name="cpfUsuario" required>
+                                <button type="submit">Confirmar</button>
+                            </form>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            @endif
+            <!-- perfil do usuario -->
         <!------------------- END MODALS ------------------->
 
           </div>
@@ -1336,7 +1405,7 @@
         <div class="container" data-aos="fade-up">
           <header class="section-header">
             <h3>Perguntas Frequentes</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+
           </header>
 
           <ul class="faq-list" data-aso="fade-up" data-aos-delay="100">
@@ -1416,50 +1485,15 @@
 
                 <div class="col-sm-6">
 
-                  <div class="footer-info">
-                    <h3>Rapid</h3>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-                  </div>
+                  
 
-                  <div class="footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
-                    <form action="" method="post">
-                      <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
-                  </div>
+                  
 
                 </div>
 
-                <div class="col-sm-6">
-                  <div class="footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#about">About us</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Terms of service</a></li>
-                      <li><a href="#">Privacy policy</a></li>
-                    </ul>
-                  </div>
+                
 
-                  <div class="footer-links">
-                    <h4>Contact Us</h4>
-                    <p>
-                      A108 Adam Street <br>
-                      New York, NY 535022<br>
-                      United States <br>
-                      <strong>Phone:</strong> +1 5589 55488 55<br>
-                      <strong>Email:</strong> info@example.com<br>
-                    </p>
-                  </div>
-
-                  <div class="social-links">
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                  </div>
+                  
 
                 </div>
 
@@ -1537,6 +1571,7 @@
   <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
   <script>
     let table = new DataTable('#tableMinhasCompras');
+    //let table = new DataTable('#tableMinhasCompras');
   </script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
