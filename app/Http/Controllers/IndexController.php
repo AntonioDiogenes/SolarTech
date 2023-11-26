@@ -15,7 +15,7 @@ class IndexController extends Controller
         $pacotes = Pacotes::all();
         if (Auth::check()) {
             $user = Auth::user();
-            $response = Http::get('http://localhost:5500/api/compras-cliente/'.$user->id);
+            $response = Http::get('http://modulofuncionario:80/api/compras-cliente/'.$user->id);
 
             $vendas = $response->json([0]);
             //dd($vendas);

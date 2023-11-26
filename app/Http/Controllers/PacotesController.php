@@ -114,12 +114,12 @@ class PacotesController extends Controller
         
         // dd($sendEmail);
         // dd($sendToFinancial);
-        $response = Http::post('http://localhost:5500/api/receber-dados', $sendToFinancial);
+        $response = Http::post('http://modulofuncionario:80/api/receber-dados', $sendToFinancial);
         
         if ($response->json(['message']) == 'True') {
-            $resp = Http::post('http://localhost:5000/sendEmail', $sendEmail);
+            $resp = Http::post('http://moduloenviaremail:5000/sendEmail', $sendEmail);
         }else{
-            dd("ai meu cu");
+            return redirect('/')->with('error', 'compra mal sucedida');
         }
 
         return redirect("/");

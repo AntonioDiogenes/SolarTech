@@ -1,5 +1,5 @@
-const URL = 'http://127.0.0.1:8000/api';
-const URL_MODULO = 'http://127.0.0.1:5500/api'
+const URL_calculadora = 'http://localhost:8000';
+const URL_MODULO = 'http://localhost:5500/api'
 
 $('#budget-form').submit(function(event) {
     event.preventDefault();
@@ -27,13 +27,13 @@ function sendBudget(){//envia o form pro controlador da calculadora
     } 
     console.log(jsonContent);
     $.ajax({
-        url: URL + '/budget',
+        url: URL_calculadora + '/budget',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(jsonContent),
         success: function(response) {
             console.log(response);
-            $('#resultado').val(response).prop('disabled', true);
+            $('#resultado').val(response['valorBudget']).prop('disabled', true);
         },
         error: function(error) {
             console.error('Erro na requisição:', error);
@@ -51,7 +51,7 @@ function sendEconomy(){//envia o form pro controlador da calculadora
     }
     
     $.ajax({
-        url: URL + '/economy', 
+        url: URL_calculadora + '/economy', 
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(jsonContent),
